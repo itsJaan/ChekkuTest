@@ -50,6 +50,7 @@ const Login:React.FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    
     const handleValue =  (e:any) =>{
         switch(e.target.name){
             case "username":
@@ -76,13 +77,11 @@ const Login:React.FC = () => {
             };
             const {data, status} = await axios.post<loginResponse>("https://app.chekku.site/api/v2/auth/login", user);
             localStorage.setItem("authToken", data.token);
-            console.log({data, status});
             if(status === 200){
-                console.log("open dashboard");
                 navigate("/dashboard");
             }
       }catch(error){
-        console.log({error});
+        alert("Usuario o contraseña incorrecto")
       }
     };
 
