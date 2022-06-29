@@ -1,20 +1,9 @@
-import { useEffect, useState } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 import Modal from './Modal';
+import { Card, Container } from '../StyledComponents';
 
 
-const Card = styled.div`
-margin: 5px;
-border: 1px solid #ccc;
-float: left;
-width: 180px;
-`;
-
-const Container = styled.div`
-    padding: 2px 16px;
-    text-align: center;
-`;
 
 const Dashboard:React.FC = () =>{
     const [loading, setLoading] = useState(false);
