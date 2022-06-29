@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import Modal from './Modal';
 
 
 const Card = styled.div`
@@ -19,7 +20,13 @@ const Dashboard:React.FC = () =>{
     const [loading, setLoading] = useState(false);
     const [checkins, setCheckins] = useState([]);
     const [cardOptions, setCardOptions] = useState([]);
+    const [selectedImage, setSelectedImage] = useState("");
+    const [isShown, setIsShown] = useState(false);
     
+    const toggle = (image = "") =>{
+        setIsShown(!isShown);
+        setSelectedImage(image);
+    }
     const getData = async() => {
         try{
             setLoading(true);
@@ -43,7 +50,7 @@ const Dashboard:React.FC = () =>{
                                 alt={customer ? customer.name : 'no title'} 
                                 width="178px" 
                                 height="150px"
-                                //onClick={()=> setModalVisible(true)}
+                                onClick={()=> toggle(checkin.image)}
                             />
                             <Container>
                                 <h4>
@@ -71,6 +78,7 @@ const Dashboard:React.FC = () =>{
     return(
         <>
             {cardOptions}
+            {isShown ? <Modal isShown={isShown} hide={() => toggle()} selectedImage={selectedImage}/> : null}
         </>
     )
 }
