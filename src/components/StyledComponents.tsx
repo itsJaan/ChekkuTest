@@ -37,7 +37,7 @@ export const Input= styled.input`
     box-sizing: border-box;
 `;
 
-export const Button = styled.button`
+export const LoginButton = styled.button`
     width: 37%;
     background-color: #A27B5C;
     color: white;
@@ -105,4 +105,15 @@ export const Content = styled.div`
   max-height: 30rem;
   overflow-x: hidden;
   overflow-y: auto;
+`;
+
+export const LogoutButton = styled.button`
+  width: 180px;
+  background-color: #A27B5C;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 14px;
 `;

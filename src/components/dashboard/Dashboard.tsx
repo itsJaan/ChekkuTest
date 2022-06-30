@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Modal from './Modal';
-import { Card, Container } from '../StyledComponents';
+import { LogoutButton, Card, Container, Content, Title } from '../StyledComponents';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Dashboard:React.FC = () =>{
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [checkins, setCheckins] = useState([]);
     const [cardOptions, setCardOptions] = useState([]);
@@ -15,6 +17,10 @@ const Dashboard:React.FC = () =>{
     const toggle = (image = "") =>{
         setIsShown(!isShown);
         setSelectedImage(image);
+    }
+    const logout = ():void =>{
+        localStorage.clear();
+        navigate("/login");
     }
     const getData = async() => {
         try{
@@ -66,8 +72,12 @@ const Dashboard:React.FC = () =>{
 
     return(
         <>
-            {cardOptions}
-            {isShown ? <Modal isShown={isShown} hide={() => toggle()} selectedImage={selectedImage}/> : null}
+            <Title>Dashboard</Title>
+            <Content>
+                {cardOptions}
+                {isShown ? <Modal isShown={isShown} hide={() => toggle()} selectedImage={selectedImage}/> : null}
+            </Content>
+            <LogoutButton onClick={logout}>Logout</LogoutButton>
         </>
     )
 }

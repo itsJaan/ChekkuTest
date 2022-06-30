@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Button, Div, Form, Input, Label, Title } from "../StyledComponents";
+import { Div, Form, Input, Label, LoginButton, Title } from "../StyledComponents";
 
 
 
@@ -53,7 +53,7 @@ const Login:React.FC = () => {
                     <Input placeholder="username" name="username" onChange={handleValue}/><br/>
                     <Label>Password:</Label><br/>
                     <Input placeholder="password" name="password" type="password" onChange={handleValue}/><br/>
-                    <Button type="submit">Login</Button>
+                    <LoginButton type="submit">Login</LoginButton>
                 </Form>
             </Div>
     );
