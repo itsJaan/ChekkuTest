@@ -35,11 +35,10 @@ const Login:React.FC = () => {
                 password: password,
 
             };
-            const {data, status} = await axios.post<loginResponse>("https://app.chekku.site/api/v2/auth/login", user);
+            const {data} = await axios.post<loginResponse>("https://app.chekku.site/api/v2/auth/login", user);
             localStorage.setItem("authToken", data.token);
-            if(status === 200){
-                navigate("/dashboard");
-            }
+            navigate("/dashboard");
+            
       }catch(error){
         alert("Usuario o contraseña incorrecto")
       }

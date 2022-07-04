@@ -10,7 +10,7 @@ const RoutingComponent:React.FC = () =>{
         <Router>
             <Routes>
               <Route path="/login" element={<Login/>} />
-              <Route path="/dashboard" element={<Dashboard/>}/>
+              <Route path="/dashboard" element={ localStorage.getItem("authToken") ? <Dashboard/> : (<Navigate to="/"/>)}/>
               <Route path="/" element={<Navigate replace to="/login" />}/>
             </Routes>
       </Router> 
