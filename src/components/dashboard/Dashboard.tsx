@@ -3,12 +3,10 @@ import { useEffect, useState } from 'react';
 import Modal from './Modal';
 import { LogoutButton, Card, Container, Content, Title } from '../StyledComponents';
 import { useNavigate } from 'react-router-dom';
-
-
+import React from 'react';
 
 const Dashboard:React.FC = () =>{
     const navigate = useNavigate();
-    const [checkins, setCheckins] = useState([]);
     const [cardOptions, setCardOptions] = useState([]);
     const [selectedImage, setSelectedImage] = useState("");
     const [isShown, setIsShown] = useState(false);
@@ -30,50 +28,44 @@ const Dashboard:React.FC = () =>{
                 'Authorization': 'Bearer ' + token
               }}
             const response = await axios.get(url, config);
-            const data = response.data.data;
-            setCheckins(data);
+            let options:any = [];
+            response.data.data.forEach((checkin:any) =>{
+                const customer = checkin.customer ? checkin.customer : undefined;
+                options.push(
+                    <Card>
+                        <img 
+                            src={checkin.image} 
+                            alt={customer ? customer.name : 'no title'} 
+                            width="178px" 
+                            height="150px"
+                            onClick={()=> toggle(checkin.image)}
+                        />
+                        <Container>
+                            <h4>
+                                {customer ? customer.name : 'no title'}
+                            </h4>
+                    </Container>
+                    </Card>
+                )
+            });
+            setCardOptions(options);
         }catch(error){
             alert("Algo malo paso");
         }
     };
-
-    const setCardsInfo = () =>{ 
-        let options:any = [];
-        checkins.forEach((checkin:any) =>{
-            const customer = checkin.customer ? checkin.customer : undefined;
-            options.push(
-                <Card>
-                    <img 
-                        src={checkin.image} 
-                        alt={customer ? customer.name : 'no title'} 
-                        width="178px" 
-                        height="150px"
-                        onClick={()=> toggle(checkin.image)}
-                    />
-                    <Container>
-                        <h4>
-                            {customer ? customer.name : 'no title'}
-                        </h4>
-                </Container>
-                </Card>
-            )
-        });
-        setCardOptions(options);
-    }
-
+    
     useEffect(() => {
         getData();
-        setCardsInfo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return(
         <>
             <Title>Dashboard</Title>
-            <Content>
-                {cardOptions}
-                {isShown ? <Modal isShown={isShown} hide={() => toggle()} selectedImage={selectedImage}/> : null}
-            </Content>
+                <Content>
+                    {isShown ? <Modal isShown={isShown} hide={() => toggle()} selectedImage={selectedImage}/> : null}
+                    {cardOptions}
+                </Content>
             <LogoutButton onClick={logout}>Logout</LogoutButton>
         </>
     )

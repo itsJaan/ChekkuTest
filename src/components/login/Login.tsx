@@ -29,6 +29,7 @@ const Login:React.FC = () => {
       
     const loginValidation = async (e:any) =>{
         try{
+            localStorage.clear();
             e.preventDefault();
             const user = {
                 username: username,
