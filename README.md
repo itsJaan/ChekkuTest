@@ -1,3 +1,7 @@
+![Status](https://img.shields.io/badge/status-demo-blue)
+![React](https://img.shields.io/badge/React-18-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-Yes-blue)
+
 # Chekku Test Dashboard
 
 A React + TypeScript application built as a technical implementation to interact with the Chekku platform API.
@@ -39,6 +43,15 @@ This project demonstrates:
 - Working with real-world backend structures  
 
 ---
+
+## 📸 Screenshots
+
+### 🔐 Login Screen
+![Login](./assets/login.png)
+
+### 📊 Dashboard View
+![Dashboard](./assets/dashboard.png)
+
 
 ## 👨‍💻 Author
 
