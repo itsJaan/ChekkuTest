@@ -55,4 +55,10 @@ This project demonstrates:
 
 ## 👨‍💻 Author
 
-Javier Nuñez  
+**Javier Nuñez**  
+Full Stack Developer | React • React Native • Node.js  
+
+Building scalable web & mobile applications with real-time features, geolocation systems, and modern UI architectures.
+
+- 🌐 LinkedIn: https://www.linkedin.com/in/javier-nunez-709318162/  
+- 💻 GitHub: https://github.com/itsJaan  
